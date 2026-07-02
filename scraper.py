@@ -1,74 +1,141 @@
 import requests
 from bs4 import BeautifulSoup
-import json, time
+import json, time, re
 from datetime import datetime
 
 BASE = "https://www.hockeyvictoria.org.au"
+
+# The team whose results we want, identified by CLUB NAME in the team link text.
 CLUB = "Essendon Hockey"
 
-# Fill in the grades Essendon Hockey plays in.
-# Get the ID from the fixtures URL: /games/{ID}
+# Grades Essendon Hockey plays in, as "season_id/grade_id" pairs.
+# Add every grade you want on the page.
 COMPETITIONS = [
-    # ("24681", "Men's Vic League 1"),
-    # ("24682", "Women's Pennant A"),
+    ("25879/42158", "Womens Premier League"),
+    ("25879/42156", "Mens Premier League"),
+    ("25879/42258", "Womens Premier League Reserves"),
+    ("25879/42243", "Mens Premier League Reserves"),
+    ("25879/42239", "Mens Pennant D North West"),
+    ("25879/42241", "Mens Pennant E North West"),
+    ("25879/42251", "Womens Pennant A"),
+    ("25879/42254", "Womens Pennant D North West"),
+    ("25879/42256", "Womens Pennant E North West"),
+    ("25879/42249", "Womens Metro 1 North West"),
 ]
 
-def get_rounds(comp_id):
-    r = requests.get(f"{BASE}/games/{comp_id}", timeout=20)
-    soup = BeautifulSoup(r.text, "html.parser")
-    rounds = set()
-    for a in soup.select("a[href*='/games/']"):
-        parts = a.get("href", "").strip("/").split("/")
-        if len(parts) >= 3 and parts[0] == "games":
-            rounds.add(a["href"])
-    return sorted(rounds)
+# Stop walking rounds after this many consecutive empty/missing rounds.
+MAX_EMPTY_ROUNDS = 3
+MAX_ROUNDS = 40  # hard safety cap
 
-def parse_round(path):
-    url = f"{BASE}{path}" if path.startswith("/") else f"{BASE}/{path}"
-    r = requests.get(url, timeout=20)
-    soup = BeautifulSoup(r.text, "html.parser")
-    round_no = path.strip("/").split("/")[-1]
+def fetch(url):
+    r = requests.get(url, timeout=25, headers={"User-Agent": "essendon-results-bot"})
+    r.raise_for_status()
+    return r.text
+
+def parse_round(comp_path, round_no):
+    """Return (heading, list_of_games) for one round, or (None, []) if empty."""
+    url = f"{BASE}/games/{comp_path}/round/{round_no}"
+    try:
+        html = fetch(url)
+    except Exception:
+        return None, []
+
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Grade heading, e.g. "2026 Senior Competition · Womens Premier League - 2026 · Round 1"
+    heading = ""
+    h = soup.find(["h1", "h2", "h3"], string=re.compile("Round", re.I))
+    if h:
+        heading = h.get_text(" ", strip=True)
+
     games = []
-    for card in soup.select("div.card, tr, div.fixture"):
-        text = card.get_text(" ", strip=True)
-        if CLUB.lower() not in text.lower():
+    # Each game has two team links: /games/team/{season}/{teamid}
+    team_links = soup.select("a[href*='/games/team/']")
+
+    # Walk team links in pairs (home, away). The score sits in the text between them.
+    # More robust: find each game's Details link and work outward.
+    detail_links = soup.select("a[href*='/game/']")
+
+    for dl in detail_links:
+        # Climb up to the container holding this game's block
+        container = dl.find_parent()
+        for _ in range(6):  # climb a few levels to capture both teams
+            if container and len(container.select("a[href*='/games/team/']")) >= 2:
+                break
+            container = container.find_parent() if container else None
+        if not container:
             continue
-        teams = [t.get_text(strip=True) for t in card.select("a[href*='/team/'], .team-name")]
-        score = ""
-        for s in card.select(".score, .result, strong"):
-            st = s.get_text(strip=True)
-            if any(c.isdigit() for c in st) and "-" in st:
-                score = st
-                break
-        date = ""
-        for d in card.select(".date, time, .fixture-date"):
-            date = d.get_text(strip=True)
-            if date:
-                break
+
+        teams = container.select("a[href*='/games/team/']")
+        if len(teams) < 2:
+            continue
+
+        home = teams[0].get_text(strip=True)
+        away = teams[1].get_text(strip=True)
+
+        # Only keep games involving our club
+        if CLUB.lower() not in (home + " " + away).lower():
+            continue
+
+        # Score: look for a pattern like "4 - 4" in the container text
+        ctext = container.get_text(" ", strip=True)
+        m = re.search(r"(\d+)\s*-\s*(\d+)", ctext)
+        score = f"{m.group(1)}-{m.group(2)}" if m else ""
+
+        # Date/time: first date-like token
+        dm = re.search(r"([A-Z][a-z]{2}\s+\d{1,2}\s+[A-Z][a-z]{2}\s+\d{4})", ctext)
+        date = dm.group(1) if dm else ""
+        tm = re.search(r"\b(\d{1,2}:\d{2})\b", ctext)
+        gtime = tm.group(1) if tm else ""
+
+        game_id = dl.get("href", "").rstrip("/").split("/")[-1]
+
         games.append({
-            "home": teams[0] if len(teams) > 0 else "",
-            "away": teams[1] if len(teams) > 1 else "",
+            "game_id": game_id,
+            "home": home,
+            "away": away,
             "score": score,
             "date": date,
+            "time": gtime,
             "played": bool(score),
-            "raw": text[:200],
         })
-    return round_no, games
+
+    # De-dupe by game_id
+    seen, unique = set(), []
+    for g in games:
+        if g["game_id"] and g["game_id"] not in seen:
+            seen.add(g["game_id"])
+            unique.append(g)
+    return heading, unique
+
+def scrape_grade(comp_path, label):
+    rounds = {}
+    empty_streak = 0
+    for rn in range(1, MAX_ROUNDS + 1):
+        heading, games = parse_round(comp_path, rn)
+        # A round "exists" if the page had any team links at all for our club-bearing games,
+        # OR the heading was found. We only store rounds with our games.
+        if games:
+            rounds[str(rn)] = games
+            empty_streak = 0
+        else:
+            empty_streak += 1
+            if empty_streak >= MAX_EMPTY_ROUNDS and rounds:
+                break
+        time.sleep(1)  # be polite to the server
+    return rounds
 
 def main():
     data = {"updated": datetime.now().isoformat(timespec="minutes"), "grades": []}
-    for comp_id, label in COMPETITIONS:
-        print(f"Scanning {label}...")
-        grade = {"label": label, "rounds": {}}
+    for comp_path, label in COMPETITIONS:
+        print(f"Scanning {label} ({comp_path})...")
         try:
-            for rnd in get_rounds(comp_id):
-                round_no, games = parse_round(rnd)
-                if games:
-                    grade["rounds"].setdefault(round_no, []).extend(games)
-                time.sleep(1)
+            rounds = scrape_grade(comp_path, label)
         except Exception as e:
             print(f"  {label} failed: {e}")
-        data["grades"].append(grade)
+            rounds = {}
+        data["grades"].append({"label": label, "rounds": rounds})
+        print(f"  Found {sum(len(v) for v in rounds.values())} games across {len(rounds)} rounds")
 
     with open("results.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
