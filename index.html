@@ -113,10 +113,10 @@ async function load() {
     const today = data.today;
 
     // Keep only rounds that have a date on/before today (no future rounds).
+    // Sort buttons by ROUND NUMBER for a natural R1, R2, R3… order.
     const playedRounds = Object.keys(data.rounds)
       .filter(rn => { const d = data.rounds[rn].date; return d && d <= today; })
-      // sort by DATE, not round number, so the timeline is correct
-      .sort((a,b) => data.rounds[a].date.localeCompare(data.rounds[b].date));
+      .sort((a,b) => Number(a) - Number(b));
 
     if (playedRounds.length === 0) {
       document.getElementById('content').innerHTML =
