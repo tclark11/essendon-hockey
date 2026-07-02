@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Essendon Hockey — Results</title>
 <style>
-  body { font-family: system-ui, sans-serif; background:#f4f4f5; color:#18181b; margin:0 auto; padding:24px; max-width:800px; }
+  body { font-family: system-ui, sans-serif; background:#f4f4f5; color:#18181b; margin:0 auto; padding:24px; max-width:820px; }
   h1 { color:#b91c1c; margin-bottom:4px; }
-  .updated { color:#71717a; font-size:14px; margin-bottom:24px; }
-  .grade { background:#fff; border-radius:12px; padding:16px 20px; margin-bottom:20px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-  .grade h2 { margin:0 0 12px; font-size:18px; color:#b91c1c; }
-  .rounds-nav { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
-  .rounds-nav button { background:#e4e4e7; color:#3f3f46; border:0; border-radius:6px; padding:6px 12px; font-size:13px; cursor:pointer; font-weight:600; }
-  .rounds-nav button:hover { background:#d4d4d8; }
-  .rounds-nav button.active { background:#b91c1c; color:#fff; }
-  .round-body { border-top:1px solid #e4e4e7; padding-top:12px; }
-  .game { display:flex; align-items:center; gap:12px; padding:8px 0; flex-wrap:wrap; }
+  .updated { color:#71717a; font-size:14px; margin-bottom:16px; }
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px; position:sticky; top:0; background:#f4f4f5; padding:8px 0; z-index:10; }
+  .tabs button { background:#e4e4e7; color:#3f3f46; border:0; border-radius:6px; padding:7px 13px; font-size:14px; cursor:pointer; font-weight:600; }
+  .tabs button:hover { background:#d4d4d8; }
+  .tabs button.active { background:#b91c1c; color:#fff; }
+  .grade { background:#fff; border-radius:12px; padding:16px 20px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .grade h2 { margin:0 0 10px; font-size:17px; color:#b91c1c; }
+  .game { display:flex; align-items:center; gap:12px; padding:8px 0; flex-wrap:wrap; border-top:1px solid #f4f4f5; }
+  .game:first-of-type { border-top:0; }
   .teams { flex:1; min-width:220px; }
   .ess { font-weight:700; }
   .score { font-weight:700; font-size:16px; min-width:52px; text-align:center; }
@@ -23,36 +23,54 @@
   .copy-btn { background:#b91c1c; color:#fff; border:0; border-radius:6px; padding:6px 12px; font-size:13px; cursor:pointer; }
   .copy-btn:hover { background:#991b1b; }
   .empty { color:#71717a; padding:20px; text-align:center; }
+  .round-date { color:#71717a; font-size:13px; margin:-6px 0 16px; }
 </style>
 </head>
 <body>
   <h1>🏑 Essendon Hockey — Results</h1>
   <div class="updated" id="updated">Loading…</div>
+  <div class="tabs" id="tabs"></div>
+  <div class="round-date" id="roundDate"></div>
   <div id="content"></div>
 
 <script>
 const CLUB = "Essendon Hockey";
 function bold(name){ return name.includes(CLUB) ? `<span class="ess">${name}</span>` : name; }
+function fmtDate(iso){
+  if(!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-AU', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+}
 
-function renderRound(grade, rn) {
-  const games = grade.rounds[rn];
-  const wrap = document.createElement('div');
-  wrap.className = 'round-body';
-  games.forEach(game => {
-    const scoreHtml = game.played
-      ? `<span class="score">${game.score}</span>`
-      : `<span class="pending">${game.date} ${game.time}</span>`;
-    const post = game.played
-      ? `🏑 ${grade.label} R${rn}: ${game.home} ${game.score} ${game.away}`
-      : `🏑 ${grade.label} R${rn}: ${game.home} vs ${game.away} — ${game.date} ${game.time}`;
-    const row = document.createElement('div');
-    row.className = 'game';
-    row.innerHTML =
-      `<span class="teams">${bold(game.home)} vs ${bold(game.away)}</span>${scoreHtml}` +
-      `<button class="copy-btn" onclick='navigator.clipboard.writeText(${JSON.stringify(post)});this.textContent="Copied!";setTimeout(()=>this.textContent="Copy post",1500)'>Copy post</button>`;
-    wrap.appendChild(row);
+function renderRound(round, rn) {
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  document.getElementById('roundDate').textContent = round.date ? 'Played ' + fmtDate(round.date) : '';
+
+  // group games by grade
+  const byGrade = {};
+  round.games.forEach(g => { (byGrade[g.grade] = byGrade[g.grade] || []).push(g); });
+
+  Object.keys(byGrade).sort().forEach(label => {
+    const g = document.createElement('div');
+    g.className = 'grade';
+    g.innerHTML = `<h2>${label}</h2>`;
+    byGrade[label].forEach(game => {
+      const scoreHtml = game.played
+        ? `<span class="score">${game.score}</span>`
+        : `<span class="pending">${fmtDate(game.date)} ${game.time}</span>`;
+      const post = game.played
+        ? `🏑 ${label} R${rn}: ${game.home} ${game.score} ${game.away}`
+        : `🏑 ${label} R${rn}: ${game.home} vs ${game.away} — ${fmtDate(game.date)} ${game.time}`;
+      const row = document.createElement('div');
+      row.className = 'game';
+      row.innerHTML =
+        `<span class="teams">${bold(game.home)} vs ${bold(game.away)}</span>${scoreHtml}` +
+        `<button class="copy-btn" onclick='navigator.clipboard.writeText(${JSON.stringify(post)});this.textContent="Copied!";setTimeout(()=>this.textContent="Copy post",1500)'>Copy post</button>`;
+      g.appendChild(row);
+    });
+    content.appendChild(g);
   });
-  return wrap;
 }
 
 async function load() {
@@ -60,46 +78,37 @@ async function load() {
     const res = await fetch('results.json?' + Date.now());
     const data = await res.json();
     document.getElementById('updated').textContent = 'Last updated: ' + data.updated.replace('T',' ');
-    const c = document.getElementById('content');
 
-    let anyGames = false;
-    data.grades.forEach(grade => {
-      const roundNos = Object.keys(grade.rounds).sort((a,b)=>a-b); // ascending
-      if (roundNos.length === 0) return;
-      anyGames = true;
+    const today = data.today;
+    // Keep only rounds that have started (date on/before today). No future rounds.
+    const playedRounds = Object.keys(data.rounds)
+      .filter(rn => { const d = data.rounds[rn].date; return d && d <= today; })
+      .sort((a,b) => a - b);
 
-      const g = document.createElement('div');
-      g.className = 'grade';
-      g.innerHTML = `<h2>${grade.label}</h2>`;
+    if (playedRounds.length === 0) {
+      document.getElementById('content').innerHTML =
+        '<div class="empty">No played rounds yet — check back after the next round.</div>';
+      return;
+    }
 
-      const nav = document.createElement('div');
-      nav.className = 'rounds-nav';
-      const bodyHolder = document.createElement('div');
+    const tabs = document.getElementById('tabs');
+    const latest = playedRounds[playedRounds.length - 1];
 
-      const latest = roundNos[roundNos.length - 1];
+    function show(rn) {
+      renderRound(data.rounds[rn], rn);
+      tabs.querySelectorAll('button').forEach(b =>
+        b.classList.toggle('active', b.dataset.rn === rn));
+    }
 
-      function show(rn) {
-        bodyHolder.innerHTML = '';
-        bodyHolder.appendChild(renderRound(grade, rn));
-        nav.querySelectorAll('button').forEach(b =>
-          b.classList.toggle('active', b.dataset.rn === rn));
-      }
-
-      roundNos.forEach(rn => {
-        const b = document.createElement('button');
-        b.textContent = 'R' + rn;
-        b.dataset.rn = rn;
-        b.onclick = () => show(rn);
-        nav.appendChild(b);
-      });
-
-      g.appendChild(nav);
-      g.appendChild(bodyHolder);
-      c.appendChild(g);
-      show(latest); // default to newest round
+    playedRounds.forEach(rn => {
+      const b = document.createElement('button');
+      b.textContent = 'Round ' + rn;
+      b.dataset.rn = rn;
+      b.onclick = () => show(rn);
+      tabs.appendChild(b);
     });
 
-    if (!anyGames) c.innerHTML = '<div class="empty">No results yet — check back after the next scrape.</div>';
+    show(latest); // default: most recent played round
   } catch (e) {
     document.getElementById('updated').textContent = 'Could not load results.json yet. Run the scraper from the Actions tab.';
   }
