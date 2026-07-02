@@ -12,6 +12,8 @@
   .tabs button { background:#e4e4e7; color:#3f3f46; border:0; border-radius:6px; padding:7px 13px; font-size:14px; cursor:pointer; font-weight:600; }
   .tabs button:hover { background:#d4d4d8; }
   .tabs button.active { background:#b91c1c; color:#fff; }
+  .section-title { font-size:20px; font-weight:800; color:#18181b; margin:24px 0 12px; padding-bottom:6px; border-bottom:3px solid #b91c1c; }
+  .section-title:first-of-type { margin-top:8px; }
   .grade { background:#fff; border-radius:12px; padding:16px 20px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
   .grade h2 { margin:0 0 10px; font-size:17px; color:#b91c1c; }
   .game { display:flex; align-items:center; gap:12px; padding:8px 0; flex-wrap:wrap; border-top:1px solid #f4f4f5; }
@@ -46,7 +48,18 @@ function fmtDate(iso){
   return d.toLocaleDateString('en-AU', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
 }
 
-// Work out W/L/D from Essendon's perspective.
+// Categorise a grade by its label. Midweek is checked first so a
+// "Midweek Women's" grade lands in Midweek, not Women's.
+function categorise(label){
+  const l = label.toLowerCase();
+  if(l.includes('midweek')) return 'Midweek';
+  if(l.includes('women') || l.includes('womens')) return "Women's";
+  if(l.includes('men')  || l.includes('mens'))   return "Men's";
+  return 'Other';
+}
+// Display order of sections. Midweek last, Other after that.
+const SECTION_ORDER = ["Men's", "Women's", "Midweek", "Other"];
+
 function essResult(game){
   if(!game.played || !game.score.includes('-')) return null;
   const [h, a] = game.score.split('-').map(n => parseInt(n, 10));
@@ -73,87 +86,27 @@ function postText(game, label, rn){
   return `🏑 ${label} R${rn}: ${ess} ${verb} ${opp} ${essGoals}–${oppGoals}`;
 }
 
-function renderRound(round, rn) {
-  const content = document.getElementById('content');
-  content.innerHTML = '';
-
-  const byGrade = {};
-  round.games.forEach(g => { (byGrade[g.grade] = byGrade[g.grade] || []).push(g); });
-
-  Object.keys(byGrade).sort().forEach(label => {
-    const g = document.createElement('div');
-    g.className = 'grade';
-    g.innerHTML = `<h2>${label}</h2>`;
-    byGrade[label].forEach(game => {
-      const r = essResult(game);
-      const resultBadge = r ? `<span class="result ${r}">${r}</span>` : '';
-      const dateLabel = game.date ? `<span class="game-date">${fmtDate(game.date)}${game.time ? ' · ' + game.time : ''}</span>` : '';
-      const scoreHtml = game.played
-        ? `${resultBadge}<span class="score">${game.score}</span>${dateLabel}`
-        : `<span class="pending">${fmtDate(game.date)}${game.time ? ' · ' + game.time : ''}</span>`;
-      const post = postText(game, label, rn);
-      const row = document.createElement('div');
-      row.className = 'game';
-      row.innerHTML =
-        `<span class="teams">${bold(game.home)} vs ${bold(game.away)}</span>${scoreHtml}` +
-        `<button class="copy-btn" onclick='navigator.clipboard.writeText(${JSON.stringify(post)});this.textContent="Copied!";setTimeout(()=>this.textContent="Copy post",1500)'>Copy post</button>`;
-      g.appendChild(row);
-    });
-    content.appendChild(g);
+function gradeBlock(label, games, rn){
+  const g = document.createElement('div');
+  g.className = 'grade';
+  g.innerHTML = `<h2>${label}</h2>`;
+  games.forEach(game => {
+    const r = essResult(game);
+    const resultBadge = r ? `<span class="result ${r}">${r}</span>` : '';
+    const dateLabel = game.date ? `<span class="game-date">${fmtDate(game.date)}${game.time ? ' · ' + game.time : ''}</span>` : '';
+    const scoreHtml = game.played
+      ? `${resultBadge}<span class="score">${game.score}</span>${dateLabel}`
+      : `<span class="pending">${fmtDate(game.date)}${game.time ? ' · ' + game.time : ''}</span>`;
+    const post = postText(game, label, rn);
+    const row = document.createElement('div');
+    row.className = 'game';
+    row.innerHTML =
+      `<span class="teams">${bold(game.home)} vs ${bold(game.away)}</span>${scoreHtml}` +
+      `<button class="copy-btn" onclick='navigator.clipboard.writeText(${JSON.stringify(post)});this.textContent="Copied!";setTimeout(()=>this.textContent="Copy post",1500)'>Copy post</button>`;
+    g.appendChild(row);
   });
+  return g;
 }
 
-async function load() {
-  try {
-    const res = await fetch('results.json?' + Date.now());
-    const data = await res.json();
-    document.getElementById('updated').textContent = 'Last updated: ' + data.updated.replace('T',' ');
-
-    const today = data.today;
-
-    // Keep only rounds that have a date on/before today (no future rounds).
-    // Sort buttons by ROUND NUMBER for a natural R1, R2, R3… order.
-    const playedRounds = Object.keys(data.rounds)
-      .filter(rn => { const d = data.rounds[rn].date; return d && d <= today; })
-      .sort((a,b) => Number(a) - Number(b));
-
-    if (playedRounds.length === 0) {
-      document.getElementById('content').innerHTML =
-        '<div class="empty">No played rounds yet — check back after the next round.</div>';
-      return;
-    }
-
-    const tabs = document.getElementById('tabs');
-
-    // Default = round whose date is nearest to (but not after) today.
-    let defaultRn = playedRounds[0];
-    let bestGap = Infinity;
-    const todayMs = new Date(today + 'T00:00:00').getTime();
-    playedRounds.forEach(rn => {
-      const gap = todayMs - new Date(data.rounds[rn].date + 'T00:00:00').getTime();
-      if (gap >= 0 && gap < bestGap) { bestGap = gap; defaultRn = rn; }
-    });
-
-    function show(rn) {
-      renderRound(data.rounds[rn], rn);
-      tabs.querySelectorAll('button').forEach(b =>
-        b.classList.toggle('active', b.dataset.rn === rn));
-    }
-
-    playedRounds.forEach(rn => {
-      const b = document.createElement('button');
-      b.textContent = 'Round ' + rn;
-      b.dataset.rn = rn;
-      b.onclick = () => show(rn);
-      tabs.appendChild(b);
-    });
-
-    show(defaultRn);
-  } catch (e) {
-    document.getElementById('updated').textContent = 'Could not load results.json yet. Run the scraper from the Actions tab.';
-  }
-}
-load();
-</script>
-</body>
-</html>
+function renderRound(round, rn) {
+  const content =
