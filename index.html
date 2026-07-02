@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essendon Hockey — Results</title>
+<style>
+  body { font-family: system-ui, sans-serif; background:#f4f4f5; color:#18181b; margin:0; padding:24px; }
+  h1 { color:#b91c1c; margin-bottom:4px; }
+  .updated { color:#71717a; font-size:14px; margin-bottom:24px; }
+  .grade { background:#fff; border-radius:12px; padding:16px 20px; margin-bottom:20px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .grade h2 { margin:0 0 12px; font-size:18px; }
+  .round { border-top:1px solid #e4e4e7; padding:10px 0; }
+  .round-title { font-weight:600; color:#52525b; font-size:13px; text-transform:uppercase; letter-spacing:.5px; }
+  .game { display:flex; align-items:center; gap:12px; padding:8px 0; flex-wrap:wrap; }
+  .teams { flex:1; min-width:200px; }
+  .score { font-weight:700; font-size:16px; }
+  .pending { color:#a1a1aa; font-style:italic; }
+  button { background:#b91c1c; color:#fff; border:0; border-radius:6px; padding:6px 12px; font-size:13px; cursor:pointer; }
+  button:hover { background:#991b1b; }
+</style>
+</head>
+<body>
+  <h1>🏑 Essendon Hockey — Results</h1>
+  <div class="updated" id="updated"></div>
+  <div id="content"></div>
+
+<script>
+async function load() {
+  const res = await fetch('results.json?' + Date.now());
+  const data = await res.json();
+  document.getElementById('updated').textContent = 'Last updated: ' + data.updated.replace('T',' ');
+  const c = document.getElementById('content');
+
+  data.grades.forEach(grade => {
+    const g = document.createElement('div');
+    g.className = 'grade';
+    g.innerHTML = `<h2>${grade.label}</h2>`;
+    const rounds = Object.keys(grade.rounds).sort((a,b)=>b-a); // newest first
+    rounds.forEach(rn => {
+      const rd = document.createElement('div');
+      rd.className = 'round';
+      rd.innerHTML = `<div class="round-title">Round ${rn}</div>`;
+      grade.rounds[rn].forEach(game => {
+        const scoreHtml = game.played
+          ? `<span class="score">${game.score}</span>`
+          : `<span class="pending">${game.date || 'upcoming'}</span>`;
+        const post = game.played
+          ? `🏑 ${grade.label} — ${game.home} ${game.score} ${game.away}`
+          : `🏑 ${grade.label} — ${game.home} vs ${game.away} ${game.date}`;
+        const row = document.createElement('div');
+        row.className = 'game';
+        row.innerHTML = `<span class="teams">${game.home} vs ${game.away}</span>${scoreHtml}
+          <button onclick="navigator.clipboard.writeText(${JSON.stringify(post)})">Copy post</button>`;
+        rd.appendChild(row);
+      });
+      g.appendChild(rd);
+    });
+    c.appendChild(g);
+  });
+}
+load();
+</script>
+</body>
+</html>
