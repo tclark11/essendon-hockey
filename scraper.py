@@ -11,16 +11,20 @@ CLUB = "Essendon Hockey"
 # Grades Essendon Hockey plays in, as "season_id/grade_id" pairs.
 # Add every grade you want on the page.
 COMPETITIONS = [
-    ("25879/42158", "Womens Premier League"),
     ("25879/42156", "Mens Premier League"),
-    ("25879/42258", "Womens Premier League Reserves"),
     ("25879/42243", "Mens Premier League Reserves"),
     ("25879/42239", "Mens Pennant D North West"),
     ("25879/42241", "Mens Pennant E North West"),
+    ("25879/42158", "Womens Premier League"),
+    ("25879/42258", "Womens Premier League Reserves"),
     ("25879/42251", "Womens Pennant A"),
     ("25879/42254", "Womens Pennant D North West"),
     ("25879/42256", "Womens Pennant E North West"),
     ("25879/42249", "Womens Metro 1 North West"),
+    ("26185/42434", "2026 Midweek Mens Open NW"),
+    ("26185/42441", "2026 Midweek Mens 40+ NW"),
+    ("26185/42444", "2026 Midweek Mens 50+ NW"),
+    ("26185/42451", "2026 Midweek Womens 45+"),
 ]
 
 # Stop walking rounds after this many consecutive empty/missing rounds.
