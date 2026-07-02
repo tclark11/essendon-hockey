@@ -5,20 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Essendon Hockey — Results</title>
 <style>
-  body { font-family: system-ui, sans-serif; background:#f4f4f5; color:#18181b; margin:0; padding:24px; max-width:800px; margin:0 auto; }
+  body { font-family: system-ui, sans-serif; background:#f4f4f5; color:#18181b; margin:0 auto; padding:24px; max-width:800px; }
   h1 { color:#b91c1c; margin-bottom:4px; }
   .updated { color:#71717a; font-size:14px; margin-bottom:24px; }
   .grade { background:#fff; border-radius:12px; padding:16px 20px; margin-bottom:20px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
   .grade h2 { margin:0 0 12px; font-size:18px; color:#b91c1c; }
-  .round { border-top:1px solid #e4e4e7; padding:12px 0; }
-  .round-title { font-weight:600; color:#52525b; font-size:12px; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
+  .rounds-nav { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .rounds-nav button { background:#e4e4e7; color:#3f3f46; border:0; border-radius:6px; padding:6px 12px; font-size:13px; cursor:pointer; font-weight:600; }
+  .rounds-nav button:hover { background:#d4d4d8; }
+  .rounds-nav button.active { background:#b91c1c; color:#fff; }
+  .round-body { border-top:1px solid #e4e4e7; padding-top:12px; }
   .game { display:flex; align-items:center; gap:12px; padding:8px 0; flex-wrap:wrap; }
   .teams { flex:1; min-width:220px; }
   .ess { font-weight:700; }
   .score { font-weight:700; font-size:16px; min-width:52px; text-align:center; }
   .pending { color:#a1a1aa; font-style:italic; font-size:13px; }
-  button { background:#b91c1c; color:#fff; border:0; border-radius:6px; padding:6px 12px; font-size:13px; cursor:pointer; }
-  button:hover { background:#991b1b; }
+  .copy-btn { background:#b91c1c; color:#fff; border:0; border-radius:6px; padding:6px 12px; font-size:13px; cursor:pointer; }
+  .copy-btn:hover { background:#991b1b; }
   .empty { color:#71717a; padding:20px; text-align:center; }
 </style>
 </head>
@@ -31,6 +34,27 @@
 const CLUB = "Essendon Hockey";
 function bold(name){ return name.includes(CLUB) ? `<span class="ess">${name}</span>` : name; }
 
+function renderRound(grade, rn) {
+  const games = grade.rounds[rn];
+  const wrap = document.createElement('div');
+  wrap.className = 'round-body';
+  games.forEach(game => {
+    const scoreHtml = game.played
+      ? `<span class="score">${game.score}</span>`
+      : `<span class="pending">${game.date} ${game.time}</span>`;
+    const post = game.played
+      ? `🏑 ${grade.label} R${rn}: ${game.home} ${game.score} ${game.away}`
+      : `🏑 ${grade.label} R${rn}: ${game.home} vs ${game.away} — ${game.date} ${game.time}`;
+    const row = document.createElement('div');
+    row.className = 'game';
+    row.innerHTML =
+      `<span class="teams">${bold(game.home)} vs ${bold(game.away)}</span>${scoreHtml}` +
+      `<button class="copy-btn" onclick='navigator.clipboard.writeText(${JSON.stringify(post)});this.textContent="Copied!";setTimeout(()=>this.textContent="Copy post",1500)'>Copy post</button>`;
+    wrap.appendChild(row);
+  });
+  return wrap;
+}
+
 async function load() {
   try {
     const res = await fetch('results.json?' + Date.now());
@@ -40,33 +64,39 @@ async function load() {
 
     let anyGames = false;
     data.grades.forEach(grade => {
-      const roundNos = Object.keys(grade.rounds).sort((a,b)=>b-a);
+      const roundNos = Object.keys(grade.rounds).sort((a,b)=>a-b); // ascending
       if (roundNos.length === 0) return;
       anyGames = true;
+
       const g = document.createElement('div');
       g.className = 'grade';
       g.innerHTML = `<h2>${grade.label}</h2>`;
+
+      const nav = document.createElement('div');
+      nav.className = 'rounds-nav';
+      const bodyHolder = document.createElement('div');
+
+      const latest = roundNos[roundNos.length - 1];
+
+      function show(rn) {
+        bodyHolder.innerHTML = '';
+        bodyHolder.appendChild(renderRound(grade, rn));
+        nav.querySelectorAll('button').forEach(b =>
+          b.classList.toggle('active', b.dataset.rn === rn));
+      }
+
       roundNos.forEach(rn => {
-        const rd = document.createElement('div');
-        rd.className = 'round';
-        rd.innerHTML = `<div class="round-title">Round ${rn}</div>`;
-        grade.rounds[rn].forEach(game => {
-          const scoreHtml = game.played
-            ? `<span class="score">${game.score}</span>`
-            : `<span class="pending">${game.date} ${game.time}</span>`;
-          const post = game.played
-            ? `🏑 ${grade.label} R${rn}: ${game.home} ${game.score} ${game.away}`
-            : `🏑 ${grade.label} R${rn}: ${game.home} vs ${game.away} — ${game.date} ${game.time}`;
-          const row = document.createElement('div');
-          row.className = 'game';
-          row.innerHTML =
-            `<span class="teams">${bold(game.home)} vs ${bold(game.away)}</span>${scoreHtml}` +
-            `<button onclick='navigator.clipboard.writeText(${JSON.stringify(post)});this.textContent="Copied!";setTimeout(()=>this.textContent="Copy post",1500)'>Copy post</button>`;
-          rd.appendChild(row);
-        });
-        g.appendChild(rd);
+        const b = document.createElement('button');
+        b.textContent = 'R' + rn;
+        b.dataset.rn = rn;
+        b.onclick = () => show(rn);
+        nav.appendChild(b);
       });
+
+      g.appendChild(nav);
+      g.appendChild(bodyHolder);
       c.appendChild(g);
+      show(latest); // default to newest round
     });
 
     if (!anyGames) c.innerHTML = '<div class="empty">No results yet — check back after the next scrape.</div>';
