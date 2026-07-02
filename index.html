@@ -16,9 +16,13 @@
   .grade h2 { margin:0 0 10px; font-size:17px; color:#b91c1c; }
   .game { display:flex; align-items:center; gap:12px; padding:8px 0; flex-wrap:wrap; border-top:1px solid #f4f4f5; }
   .game:first-of-type { border-top:0; }
-  .teams { flex:1; min-width:220px; }
+  .teams { flex:1; min-width:200px; }
   .ess { font-weight:700; }
   .score { font-weight:700; font-size:16px; min-width:52px; text-align:center; }
+  .result { font-weight:700; font-size:13px; border-radius:5px; padding:2px 8px; min-width:22px; text-align:center; }
+  .result.W { background:#dcfce7; color:#166534; }
+  .result.L { background:#fee2e2; color:#991b1b; }
+  .result.D { background:#fef9c3; color:#854d0e; }
   .pending { color:#a1a1aa; font-style:italic; font-size:13px; }
   .copy-btn { background:#b91c1c; color:#fff; border:0; border-radius:6px; padding:6px 12px; font-size:13px; cursor:pointer; }
   .copy-btn:hover { background:#991b1b; }
@@ -35,11 +39,39 @@
 
 <script>
 const CLUB = "Essendon Hockey";
-function bold(name){ return name.includes(CLUB) ? `<span class="ess">${name}</span>` : name; }
+function isEss(name){ return name.includes(CLUB); }
+function bold(name){ return isEss(name) ? `<span class="ess">${name}</span>` : name; }
 function fmtDate(iso){
   if(!iso) return '';
   const d = new Date(iso + 'T00:00:00');
   return d.toLocaleDateString('en-AU', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+}
+
+// Work out W/L/D from Essendon's perspective.
+function essResult(game){
+  if(!game.played || !game.score.includes('-')) return null;
+  const [h, a] = game.score.split('-').map(n => parseInt(n, 10));
+  if(isNaN(h) || isNaN(a)) return null;
+  const essHome = isEss(game.home);
+  const essGoals = essHome ? h : a;
+  const oppGoals = essHome ? a : h;
+  if(essGoals > oppGoals) return 'W';
+  if(essGoals < oppGoals) return 'L';
+  return 'D';
+}
+
+function postText(game, label, rn){
+  if(!game.played){
+    return `🏑 ${label} R${rn}: ${game.home} vs ${game.away} — ${fmtDate(game.date)} ${game.time}`;
+  }
+  const r = essResult(game);
+  const ess = isEss(game.home) ? game.home : game.away;
+  const opp = isEss(game.home) ? game.away : game.home;
+  const [h, a] = game.score.split('-').map(n => parseInt(n, 10));
+  const essGoals = isEss(game.home) ? h : a;
+  const oppGoals = isEss(game.home) ? a : h;
+  const verb = r === 'W' ? 'def.' : r === 'L' ? 'lost to' : 'drew with';
+  return `🏑 ${label} R${rn}: ${ess} ${verb} ${opp} ${essGoals}–${oppGoals}`;
 }
 
 function renderRound(round, rn) {
@@ -47,7 +79,6 @@ function renderRound(round, rn) {
   content.innerHTML = '';
   document.getElementById('roundDate').textContent = round.date ? 'Played ' + fmtDate(round.date) : '';
 
-  // group games by grade
   const byGrade = {};
   round.games.forEach(g => { (byGrade[g.grade] = byGrade[g.grade] || []).push(g); });
 
@@ -56,12 +87,12 @@ function renderRound(round, rn) {
     g.className = 'grade';
     g.innerHTML = `<h2>${label}</h2>`;
     byGrade[label].forEach(game => {
+      const r = essResult(game);
+      const resultBadge = r ? `<span class="result ${r}">${r}</span>` : '';
       const scoreHtml = game.played
-        ? `<span class="score">${game.score}</span>`
+        ? `${resultBadge}<span class="score">${game.score}</span>`
         : `<span class="pending">${fmtDate(game.date)} ${game.time}</span>`;
-      const post = game.played
-        ? `🏑 ${label} R${rn}: ${game.home} ${game.score} ${game.away}`
-        : `🏑 ${label} R${rn}: ${game.home} vs ${game.away} — ${fmtDate(game.date)} ${game.time}`;
+      const post = postText(game, label, rn);
       const row = document.createElement('div');
       row.className = 'game';
       row.innerHTML =
@@ -80,10 +111,12 @@ async function load() {
     document.getElementById('updated').textContent = 'Last updated: ' + data.updated.replace('T',' ');
 
     const today = data.today;
-    // Keep only rounds that have started (date on/before today). No future rounds.
+
+    // Keep only rounds that have a date on/before today (no future rounds).
     const playedRounds = Object.keys(data.rounds)
       .filter(rn => { const d = data.rounds[rn].date; return d && d <= today; })
-      .sort((a,b) => a - b);
+      // sort by DATE, not round number, so the timeline is correct
+      .sort((a,b) => data.rounds[a].date.localeCompare(data.rounds[b].date));
 
     if (playedRounds.length === 0) {
       document.getElementById('content').innerHTML =
@@ -92,7 +125,15 @@ async function load() {
     }
 
     const tabs = document.getElementById('tabs');
-    const latest = playedRounds[playedRounds.length - 1];
+
+    // Default = round whose date is nearest to (but not after) today.
+    let defaultRn = playedRounds[0];
+    let bestGap = Infinity;
+    const todayMs = new Date(today + 'T00:00:00').getTime();
+    playedRounds.forEach(rn => {
+      const gap = todayMs - new Date(data.rounds[rn].date + 'T00:00:00').getTime();
+      if (gap >= 0 && gap < bestGap) { bestGap = gap; defaultRn = rn; }
+    });
 
     function show(rn) {
       renderRound(data.rounds[rn], rn);
@@ -108,7 +149,7 @@ async function load() {
       tabs.appendChild(b);
     });
 
-    show(latest); // default: most recent played round
+    show(defaultRn);
   } catch (e) {
     document.getElementById('updated').textContent = 'Could not load results.json yet. Run the scraper from the Actions tab.';
   }
