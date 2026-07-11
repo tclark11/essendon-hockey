@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-10T11:55",
-  "today": "2026-07-10",
+  "updated": "2026-07-11T10:19",
+  "today": "2026-07-11",
   "rounds": {
     "1": {
       "games": [
@@ -1523,10 +1523,10 @@
           "game_id": "2504951",
           "home": "Craigieburn Falcons Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "0-7",
           "date": "2026-07-11",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant D North West"
         },
         {
@@ -1573,10 +1573,10 @@
           "game_id": "2579945",
           "home": "PEGS Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-1",
           "date": "2026-07-11",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant D North West"
         },
         {
