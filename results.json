@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-11T10:19",
-  "today": "2026-07-11",
+  "updated": "2026-07-12T10:30",
+  "today": "2026-07-12",
   "rounds": {
     "1": {
       "games": [
@@ -1503,20 +1503,20 @@
           "game_id": "2476114",
           "home": "Mentone Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "2-3",
           "date": "2026-07-12",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League"
         },
         {
           "game_id": "2492957",
           "home": "Mentone Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "4-0",
           "date": "2026-07-12",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League Reserves"
         },
         {
@@ -1533,40 +1533,40 @@
           "game_id": "2492914",
           "home": "Brunswick Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-2",
           "date": "2026-07-12",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant E North West"
         },
         {
           "game_id": "2476115",
           "home": "Mentone Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "4-1",
           "date": "2026-07-12",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League"
         },
         {
           "game_id": "2492956",
           "home": "Mentone Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "2-1",
           "date": "2026-07-12",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League Reserves"
         },
         {
           "game_id": "2535496",
           "home": "Southern United Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-3",
           "date": "2026-07-12",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant A"
         },
         {
@@ -1583,10 +1583,10 @@
           "game_id": "2494940",
           "home": "Essendon Hockey",
           "away": "Werribee Hockey Club",
-          "score": "",
+          "score": "4-1",
           "date": "2026-07-11",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant E North West"
         },
         {
