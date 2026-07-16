@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-15T10:52",
-  "today": "2026-07-15",
+  "updated": "2026-07-16T11:02",
+  "today": "2026-07-16",
   "rounds": {
     "1": {
       "games": [
@@ -1603,10 +1603,10 @@
           "game_id": "2532906",
           "home": "PEGS Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "2-0",
           "date": "2026-07-15",
           "time": "19:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens 50+ NW"
         }
       ],
