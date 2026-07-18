@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-17T10:51",
-  "today": "2026-07-17",
+  "updated": "2026-07-18T10:22",
+  "today": "2026-07-18",
   "rounds": {
     "1": {
       "games": [
@@ -1638,10 +1638,10 @@
           "game_id": "2504965",
           "home": "Essendon Hockey",
           "away": "Footscray Hockey Club",
-          "score": "",
+          "score": "4-1",
           "date": "2026-07-18",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant D North West"
         },
         {
@@ -1678,10 +1678,10 @@
           "game_id": "2535498",
           "home": "Essendon Hockey",
           "away": "MCC Hockey Section",
-          "score": "",
+          "score": "1-3",
           "date": "2026-07-18",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant A"
         },
         {
@@ -1708,10 +1708,10 @@
           "game_id": "2513111",
           "home": "Sunshine Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "2-1",
           "date": "2026-07-18",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Metro 1 North West"
         },
         {
