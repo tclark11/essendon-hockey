@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-18T10:22",
-  "today": "2026-07-18",
+  "updated": "2026-07-19T10:30",
+  "today": "2026-07-19",
   "rounds": {
     "1": {
       "games": [
@@ -1618,20 +1618,20 @@
           "game_id": "2464117",
           "home": "Hawthorn Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "3-1",
           "date": "2026-07-18",
           "time": "18:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League"
         },
         {
           "game_id": "2492936",
           "home": "Hawthorn Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "7-1",
           "date": "2026-07-18",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League Reserves"
         },
         {
@@ -1648,30 +1648,30 @@
           "game_id": "2493997",
           "home": "Essendon Hockey",
           "away": "Melbourne University Hockey Club",
-          "score": "",
+          "score": "9-1",
           "date": "2026-07-18",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant E North West"
         },
         {
           "game_id": "2464116",
           "home": "Hawthorn Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "5-0",
           "date": "2026-07-18",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League"
         },
         {
           "game_id": "2492935",
           "home": "Hawthorn Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "6-1",
           "date": "2026-07-18",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League Reserves"
         },
         {
@@ -1688,20 +1688,20 @@
           "game_id": "2579948",
           "home": "Essendon Hockey",
           "away": "La Trobe University Hockey Club",
-          "score": "",
+          "score": "3-1",
           "date": "2026-07-18",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant D North West"
         },
         {
           "game_id": "2492932",
           "home": "Greensborough Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-1",
           "date": "2026-07-18",
           "time": "18:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant E North West"
         },
         {
