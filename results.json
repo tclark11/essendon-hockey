@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-19T10:30",
-  "today": "2026-07-19",
+  "updated": "2026-07-20T11:48",
+  "today": "2026-07-20",
   "rounds": {
     "1": {
       "games": [
@@ -1718,10 +1718,10 @@
           "game_id": "2530971",
           "home": "Essendon Hockey",
           "away": "Greensborough Hockey Club",
-          "score": "",
+          "score": "0-3",
           "date": "2026-07-20",
           "time": "19:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens 40+ NW"
         },
         {
