@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-21T11:11",
-  "today": "2026-07-21",
+  "updated": "2026-07-22T11:10",
+  "today": "2026-07-22",
   "rounds": {
     "1": {
       "games": [
@@ -2533,20 +2533,20 @@
           "game_id": "2469121",
           "home": "Waverley Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "4-3",
           "date": "2026-07-21",
           "time": "20:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League"
         },
         {
           "game_id": "2469122",
           "home": "Waverley Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "0-1",
           "date": "2026-07-21",
           "time": "18:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League"
         }
       ],
