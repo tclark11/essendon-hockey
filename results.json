@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-22T11:10",
-  "today": "2026-07-22",
+  "updated": "2026-07-23T11:14",
+  "today": "2026-07-23",
   "rounds": {
     "1": {
       "games": [
@@ -1728,10 +1728,10 @@
           "game_id": "2532931",
           "home": "Essendon Hockey",
           "away": "Brunswick Hockey Club",
-          "score": "",
+          "score": "0-3",
           "date": "2026-07-22",
           "time": "20:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Womens 45+"
         }
       ],
