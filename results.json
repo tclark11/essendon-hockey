@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-25T10:32",
-  "today": "2026-07-25",
+  "updated": "2026-07-26T10:49",
+  "today": "2026-07-26",
   "rounds": {
     "1": {
       "games": [
@@ -1763,10 +1763,10 @@
           "game_id": "2504957",
           "home": "Melton Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "0-1",
           "date": "2026-07-26",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant D North West"
         },
         {
@@ -1783,20 +1783,20 @@
           "game_id": "2464145",
           "home": "Essendon Hockey",
           "away": "Doncaster Hockey Club",
-          "score": "",
+          "score": "3-1",
           "date": "2026-07-25",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League"
         },
         {
           "game_id": "2492802",
           "home": "Essendon Hockey",
           "away": "Doncaster Hockey Club",
-          "score": "",
+          "score": "3-1",
           "date": "2026-07-25",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League Reserves"
         },
         {
@@ -1813,10 +1813,10 @@
           "game_id": "2579952",
           "home": "Footscray Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "0-3",
           "date": "2026-07-26",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant D North West"
         },
         {
@@ -1833,10 +1833,10 @@
           "game_id": "2513113",
           "home": "Essendon Hockey",
           "away": "Brunswick Hockey Club",
-          "score": "",
+          "score": "5-0",
           "date": "2026-07-25",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Metro 1 North West"
         },
         {
