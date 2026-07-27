@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-26T10:49",
-  "today": "2026-07-26",
+  "updated": "2026-07-27T12:24",
+  "today": "2026-07-27",
   "rounds": {
     "1": {
       "games": [
@@ -1803,10 +1803,10 @@
           "game_id": "2535506",
           "home": "KBH Brumbies Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "0-3",
           "date": "2026-07-26",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant A"
         },
         {
@@ -1843,20 +1843,20 @@
           "game_id": "2531007",
           "home": "Essendon Hockey",
           "away": "Altona Hockey Club",
-          "score": "",
+          "score": "7-2",
           "date": "2026-07-27",
           "time": "19:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens Open NW"
         },
         {
           "game_id": "2531025",
           "home": "PEGS Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "4-0",
           "date": "2026-07-27",
           "time": "19:30",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens 40+ NW"
         },
         {
