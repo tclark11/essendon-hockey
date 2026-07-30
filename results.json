@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-29T11:28",
-  "today": "2026-07-29",
+  "updated": "2026-07-30T11:10",
+  "today": "2026-07-30",
   "rounds": {
     "1": {
       "games": [
@@ -1863,20 +1863,20 @@
           "game_id": "2532956",
           "home": "KBH Stallions",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-0",
           "date": "2026-07-29",
           "time": "21:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens 50+ NW"
         },
         {
           "game_id": "2532946",
           "home": "Footscray Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "3-0",
           "date": "2026-07-29",
           "time": "19:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Womens 45+"
         }
       ],
