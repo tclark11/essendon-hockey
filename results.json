@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-31T11:34",
-  "today": "2026-07-31",
+  "updated": "2026-08-01T10:38",
+  "today": "2026-08-01",
   "rounds": {
     "1": {
       "games": [
@@ -1898,10 +1898,10 @@
           "game_id": "2492476",
           "home": "Essendon Hockey",
           "away": "Camberwell Hockey Club",
-          "score": "",
+          "score": "0-5",
           "date": "2026-08-01",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League Reserves"
         },
         {
@@ -1918,20 +1918,20 @@
           "game_id": "2494537",
           "home": "Essendon Hockey",
           "away": "RMIT Hockey Club",
-          "score": "",
+          "score": "3-1",
           "date": "2026-08-01",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant E North West"
         },
         {
           "game_id": "2464171",
           "home": "Essendon Hockey",
           "away": "Camberwell Hockey Club",
-          "score": "",
+          "score": "4-6",
           "date": "2026-08-01",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League"
         },
         {
