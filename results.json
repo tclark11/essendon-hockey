@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-01T10:38",
-  "today": "2026-08-01",
+  "updated": "2026-08-02T10:39",
+  "today": "2026-08-02",
   "rounds": {
     "1": {
       "games": [
@@ -1888,10 +1888,10 @@
           "game_id": "2464172",
           "home": "Essendon Hockey",
           "away": "Camberwell Hockey Club",
-          "score": "",
+          "score": "1-3",
           "date": "2026-08-01",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League"
         },
         {
@@ -1908,10 +1908,10 @@
           "game_id": "2504954",
           "home": "La Trobe University Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-3",
           "date": "2026-08-01",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant D North West"
         },
         {
@@ -1938,40 +1938,40 @@
           "game_id": "2492477",
           "home": "Essendon Hockey",
           "away": "Camberwell Hockey Club",
-          "score": "",
+          "score": "0-4",
           "date": "2026-08-01",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League Reserves"
         },
         {
           "game_id": "2579957",
           "home": "Essendon Hockey",
           "away": "Yarra Hockey Club",
-          "score": "",
+          "score": "5-0",
           "date": "2026-08-01",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant D North West"
         },
         {
           "game_id": "2494469",
           "home": "Essendon Hockey",
           "away": "PEGS Hockey Club",
-          "score": "",
+          "score": "2-1",
           "date": "2026-08-02",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant E North West"
         },
         {
           "game_id": "2558151",
           "home": "Essendon Hockey",
           "away": "Melton Hockey Club",
-          "score": "",
+          "score": "9-0",
           "date": "2026-08-02",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Metro 1 North West"
         },
         {
