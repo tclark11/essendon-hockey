@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-05T11:24",
-  "today": "2026-08-05",
+  "updated": "2026-08-06T11:24",
+  "today": "2026-08-06",
   "rounds": {
     "1": {
       "games": [
@@ -1998,20 +1998,20 @@
           "game_id": "2532989",
           "home": "Essendon Hockey",
           "away": "Footscray Hockey Club",
-          "score": "",
+          "score": "1-2",
           "date": "2026-08-05",
           "time": "21:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens 50+ NW"
         },
         {
           "game_id": "2532988",
           "home": "Essendon Hockey",
           "away": "Toorak East Malvern Hockey Club",
-          "score": "",
+          "score": "1-5",
           "date": "2026-08-05",
           "time": "20:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Womens 45+"
         }
       ],
