@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-07T10:05",
-  "today": "2026-08-07",
+  "updated": "2026-08-08T09:39",
+  "today": "2026-08-08",
   "rounds": {
     "1": {
       "games": [
@@ -2033,10 +2033,10 @@
           "game_id": "2492967",
           "home": "Southern United Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "9-0",
           "date": "2026-08-08",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League Reserves"
         },
         {
@@ -2073,10 +2073,10 @@
           "game_id": "2492968",
           "home": "Southern United Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-0",
           "date": "2026-08-08",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League Reserves"
         },
         {
@@ -2103,10 +2103,10 @@
           "game_id": "2492287",
           "home": "Essendon Hockey",
           "away": "Brunswick Hockey Club",
-          "score": "",
+          "score": "0-1",
           "date": "2026-08-08",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant E North West"
         },
         {
