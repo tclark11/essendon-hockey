@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-14T10:03",
-  "today": "2026-08-14",
+  "updated": "2026-08-15T09:29",
+  "today": "2026-08-15",
   "rounds": {
     "1": {
       "games": [
@@ -2168,10 +2168,10 @@
           "game_id": "2464221",
           "home": "Essendon Hockey",
           "away": "KBH Brumbies Hockey Club",
-          "score": "",
+          "score": "3-9",
           "date": "2026-08-15",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League"
         },
         {
@@ -2248,10 +2248,10 @@
           "game_id": "2494076",
           "home": "Essendon Hockey",
           "away": "Melton Hockey Club",
-          "score": "",
+          "score": "18-0",
           "date": "2026-08-15",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant E North West"
         },
         {
