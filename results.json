@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-15T09:29",
-  "today": "2026-08-15",
+  "updated": "2026-08-16T09:30",
+  "today": "2026-08-16",
   "rounds": {
     "1": {
       "games": [
@@ -2198,20 +2198,20 @@
           "game_id": "2492151",
           "home": "Essendon Hockey",
           "away": "Altona Hockey Club",
-          "score": "",
+          "score": "3-0",
           "date": "2026-08-15",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant E North West"
         },
         {
           "game_id": "2464220",
           "home": "Essendon Hockey",
           "away": "Bayside Powerhouse Hockey Club",
-          "score": "",
+          "score": "0-2",
           "date": "2026-08-15",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League"
         },
         {
@@ -2228,20 +2228,20 @@
           "game_id": "2535517",
           "home": "Essendon Hockey",
           "away": "Camberwell Hockey Club",
-          "score": "",
+          "score": "1-2",
           "date": "2026-08-15",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant A"
         },
         {
           "game_id": "2579965",
           "home": "Essendon Hockey",
           "away": "Brunswick Hockey Club",
-          "score": "",
+          "score": "3-2",
           "date": "2026-08-15",
           "time": "18:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant D North West"
         },
         {
@@ -2258,10 +2258,10 @@
           "game_id": "2513125",
           "home": "Essendon Hockey",
           "away": "RMIT Hockey Club",
-          "score": "",
+          "score": "2-0",
           "date": "2026-08-15",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Metro 1 North West"
         },
         {
