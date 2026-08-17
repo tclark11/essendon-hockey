@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-16T09:30",
-  "today": "2026-08-16",
+  "updated": "2026-08-17T09:42",
+  "today": "2026-08-17",
   "rounds": {
     "1": {
       "games": [
@@ -2178,20 +2178,20 @@
           "game_id": "2493486",
           "home": "Essendon Hockey",
           "away": "KBH Brumbies Hockey Club",
-          "score": "",
+          "score": "1-14",
           "date": "2026-08-15",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League Reserves"
         },
         {
           "game_id": "2505109",
           "home": "Essendon Hockey",
           "away": "PEGS Hockey Club",
-          "score": "",
+          "score": "3-1",
           "date": "2026-08-15",
           "time": "18:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant D North West"
         },
         {
@@ -2218,10 +2218,10 @@
           "game_id": "2492223",
           "home": "Essendon Hockey",
           "away": "Bayside Powerhouse Hockey Club",
-          "score": "",
+          "score": "2-0",
           "date": "2026-08-15",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League Reserves"
         },
         {
