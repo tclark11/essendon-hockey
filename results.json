@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-17T09:42",
-  "today": "2026-08-17",
+  "updated": "2026-08-18T09:34",
+  "today": "2026-08-18",
   "rounds": {
     "1": {
       "games": [
@@ -2268,20 +2268,20 @@
           "game_id": "2531116",
           "home": "Essendon Hockey",
           "away": "La Trobe University Hockey Club",
-          "score": "",
+          "score": "4-0",
           "date": "2026-08-17",
           "time": "19:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens Open NW"
         },
         {
           "game_id": "2531117",
           "home": "Essendon Hockey",
           "away": "Melbourne University Hockey Club",
-          "score": "",
+          "score": "0-8",
           "date": "2026-08-17",
           "time": "20:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens 40+ NW"
         },
         {
