@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-19T09:34",
-  "today": "2026-08-19",
+  "updated": "2026-08-20T09:36",
+  "today": "2026-08-20",
   "rounds": {
     "1": {
       "games": [
@@ -2288,20 +2288,20 @@
           "game_id": "2535089",
           "home": "Essendon Hockey",
           "away": "Brunswick Hockey Club Black",
-          "score": "",
+          "score": "1-2",
           "date": "2026-08-19",
           "time": "21:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens 50+ NW"
         },
         {
           "game_id": "2535088",
           "home": "Essendon Hockey",
           "away": "Monash University Hockey Club",
-          "score": "",
+          "score": "1-1",
           "date": "2026-08-19",
           "time": "20:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Womens 45+"
         }
       ],
