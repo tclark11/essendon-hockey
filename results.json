@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-21T09:37",
-  "today": "2026-08-21",
+  "updated": "2026-08-22T09:29",
+  "today": "2026-08-22",
   "rounds": {
     "1": {
       "games": [
@@ -2313,10 +2313,10 @@
           "game_id": "2476084",
           "home": "Altona Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "5-0",
           "date": "2026-08-22",
           "time": "14:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League"
         },
         {
@@ -2383,10 +2383,10 @@
           "game_id": "2579969",
           "home": "MCC Hockey Section",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "5-1",
           "date": "2026-08-22",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant D North West"
         },
         {
