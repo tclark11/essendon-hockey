@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-22T09:29",
-  "today": "2026-08-22",
+  "updated": "2026-08-23T09:30",
+  "today": "2026-08-23",
   "rounds": {
     "1": {
       "games": [
@@ -2323,10 +2323,10 @@
           "game_id": "2492906",
           "home": "Altona Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "7-0",
           "date": "2026-08-22",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Premier League Reserves"
         },
         {
@@ -2343,40 +2343,40 @@
           "game_id": "2492974",
           "home": "Werribee Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "0-7",
           "date": "2026-08-22",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant E North West"
         },
         {
           "game_id": "2476085",
           "home": "Altona Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "3-3",
           "date": "2026-08-22",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League"
         },
         {
           "game_id": "2492907",
           "home": "Altona Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-1",
           "date": "2026-08-22",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League Reserves"
         },
         {
           "game_id": "2535524",
           "home": "Mentone Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "0-1",
           "date": "2026-08-22",
           "time": "15:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant A"
         },
         {
@@ -2393,20 +2393,20 @@
           "game_id": "2492908",
           "home": "Altona Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-1",
           "date": "2026-08-22",
           "time": "18:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant E North West"
         },
         {
           "game_id": "2513129",
           "home": "La Trobe University Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "2-0",
           "date": "2026-08-22",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Metro 1 North West"
         },
         {
