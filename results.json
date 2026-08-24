@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-23T09:30",
-  "today": "2026-08-23",
+  "updated": "2026-08-24T09:48",
+  "today": "2026-08-24",
   "rounds": {
     "1": {
       "games": [
@@ -2333,10 +2333,10 @@
           "game_id": "2504956",
           "home": "MCC Hockey Section",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "3-5",
           "date": "2026-08-23",
           "time": "17:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant D North West"
         },
         {
