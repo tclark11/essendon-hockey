@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-24T09:48",
-  "today": "2026-08-24",
+  "updated": "2026-08-25T09:38",
+  "today": "2026-08-25",
   "rounds": {
     "1": {
       "games": [
@@ -2413,20 +2413,20 @@
           "game_id": "2531139",
           "home": "Brunswick Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "2-2",
           "date": "2026-08-24",
           "time": "20:15",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens Open NW"
         },
         {
           "game_id": "2531150",
           "home": "Toorak East Malvern Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "4-0",
           "date": "2026-08-24",
           "time": "20:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens 40+ NW"
         },
         {
@@ -2465,6 +2465,26 @@
           "grade": "Mens Premier League"
         },
         {
+          "game_id": "2630125",
+          "home": "Essendon Hockey",
+          "away": "Footscray Hockey Club",
+          "score": "",
+          "date": "2026-08-29",
+          "time": "13:00",
+          "played": false,
+          "grade": "Mens Pennant D North West"
+        },
+        {
+          "game_id": "2630124",
+          "home": "Essendon Hockey",
+          "away": "Altona Hockey Club",
+          "score": "",
+          "date": "2026-08-29",
+          "time": "11:00",
+          "played": false,
+          "grade": "Mens Pennant E North West"
+        },
+        {
           "game_id": "2463737",
           "home": "Essendon Hockey",
           "away": "MCC Hockey Section",
@@ -2473,6 +2493,46 @@
           "time": "20:40",
           "played": true,
           "grade": "Womens Premier League"
+        },
+        {
+          "game_id": "2630173",
+          "home": "Waverley Hockey Club",
+          "away": "Essendon Hockey",
+          "score": "",
+          "date": "2026-08-30",
+          "time": "15:00",
+          "played": false,
+          "grade": "Womens Pennant A"
+        },
+        {
+          "game_id": "2630140",
+          "home": "MCC Hockey Section",
+          "away": "Essendon Hockey",
+          "score": "",
+          "date": "2026-08-29",
+          "time": "16:00",
+          "played": false,
+          "grade": "Womens Pennant D North West"
+        },
+        {
+          "game_id": "2630126",
+          "home": "Essendon Hockey",
+          "away": "Melbourne University Hockey Club",
+          "score": "",
+          "date": "2026-08-29",
+          "time": "15:00",
+          "played": false,
+          "grade": "Womens Pennant E North West"
+        },
+        {
+          "game_id": "2630127",
+          "home": "Essendon Hockey",
+          "away": "Sunshine Hockey Club",
+          "score": "",
+          "date": "2026-08-29",
+          "time": "17:00",
+          "played": false,
+          "grade": "Womens Metro 1 North West"
         }
       ],
       "date": "2026-03-27"
@@ -2551,6 +2611,21 @@
         }
       ],
       "date": "2026-07-21"
+    },
+    "23": {
+      "games": [
+        {
+          "game_id": "2630171",
+          "home": "Hawthorn Hockey Club",
+          "away": "Essendon Hockey",
+          "score": "",
+          "date": "2026-08-30",
+          "time": "12:00",
+          "played": false,
+          "grade": "Womens Premier League"
+        }
+      ],
+      "date": "2026-08-30"
     }
   }
 }
