@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-26T09:42",
-  "today": "2026-08-26",
+  "updated": "2026-08-27T19:31",
+  "today": "2026-08-27",
   "rounds": {
     "1": {
       "games": [
@@ -2433,20 +2433,20 @@
           "game_id": "2535107",
           "home": "Brunswick Hockey Club White",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-1",
           "date": "2026-08-26",
           "time": "20:15",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens 50+ NW"
         },
         {
           "game_id": "2535119",
           "home": "Greensborough Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "5-0",
           "date": "2026-08-26",
           "time": "19:00",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Womens 45+"
         }
       ],
@@ -2533,6 +2533,16 @@
           "time": "17:00",
           "played": false,
           "grade": "Womens Metro 1 North West"
+        },
+        {
+          "game_id": "2633074",
+          "home": "Yarra Hockey Club",
+          "away": "Essendon Hockey",
+          "score": "",
+          "date": "2026-08-31",
+          "time": "20:30",
+          "played": false,
+          "grade": "2026 Midweek Mens Open NW"
         }
       ],
       "date": "2026-03-27"
