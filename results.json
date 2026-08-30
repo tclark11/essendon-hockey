@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-29T14:16",
-  "today": "2026-08-29",
+  "updated": "2026-08-30T14:21",
+  "today": "2026-08-30",
   "rounds": {
     "1": {
       "games": [
@@ -2498,30 +2498,30 @@
           "game_id": "2630173",
           "home": "Waverley Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "4-1",
           "date": "2026-08-30",
           "time": "15:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant A"
         },
         {
           "game_id": "2630140",
           "home": "MCC Hockey Section",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "1-0",
           "date": "2026-08-29",
           "time": "16:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant D North West"
         },
         {
           "game_id": "2630126",
           "home": "Essendon Hockey",
           "away": "Melbourne University Hockey Club",
-          "score": "",
+          "score": "5-0",
           "date": "2026-08-29",
           "time": "15:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant E North West"
         },
         {
@@ -2628,10 +2628,10 @@
           "game_id": "2630171",
           "home": "Hawthorn Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "4-0",
           "date": "2026-08-30",
           "time": "12:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Premier League"
         }
       ],
