@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-30T14:21",
-  "today": "2026-08-30",
+  "updated": "2026-08-31T16:46",
+  "today": "2026-08-31",
   "rounds": {
     "1": {
       "games": [
@@ -2538,10 +2538,10 @@
           "game_id": "2633074",
           "home": "Yarra Hockey Club",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "2-1",
           "date": "2026-08-31",
           "time": "20:30",
-          "played": false,
+          "played": true,
           "grade": "2026 Midweek Mens Open NW"
         }
       ],
