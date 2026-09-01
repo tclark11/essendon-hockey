@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-31T16:46",
-  "today": "2026-08-31",
+  "updated": "2026-09-01T13:59",
+  "today": "2026-09-01",
   "rounds": {
     "1": {
       "games": [
@@ -2568,6 +2568,26 @@
           "time": "20:30",
           "played": true,
           "grade": "Womens Premier League"
+        },
+        {
+          "game_id": "2635753",
+          "home": "Essendon Hockey",
+          "away": "Mentone Hockey Club",
+          "score": "",
+          "date": "2026-09-05",
+          "time": "12:00",
+          "played": false,
+          "grade": "Womens Pennant A"
+        },
+        {
+          "game_id": "2635780",
+          "home": "Essendon Hockey",
+          "away": "Brunswick Hockey Club",
+          "score": "",
+          "date": "2026-09-06",
+          "time": "16:00",
+          "played": false,
+          "grade": "Womens Pennant D North West"
         }
       ],
       "date": "2026-04-01"
