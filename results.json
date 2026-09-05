@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-04T13:14",
-  "today": "2026-09-04",
+  "updated": "2026-09-05T12:25",
+  "today": "2026-09-05",
   "rounds": {
     "1": {
       "games": [
@@ -2573,10 +2573,10 @@
           "game_id": "2635753",
           "home": "Essendon Hockey",
           "away": "Mentone Hockey Club",
-          "score": "",
+          "score": "2-3",
           "date": "2026-09-05",
           "time": "12:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant A"
         },
         {
