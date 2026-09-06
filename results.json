@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-05T12:25",
-  "today": "2026-09-05",
+  "updated": "2026-09-06T12:41",
+  "today": "2026-09-06",
   "rounds": {
     "1": {
       "games": [
@@ -2583,10 +2583,10 @@
           "game_id": "2635780",
           "home": "Essendon Hockey",
           "away": "Brunswick Hockey Club",
-          "score": "",
+          "score": "3-2",
           "date": "2026-09-06",
           "time": "16:00",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant D North West"
         }
       ],
