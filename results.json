@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-07T14:50",
-  "today": "2026-09-07",
+  "updated": "2026-09-08T13:22",
+  "today": "2026-09-08",
   "rounds": {
     "1": {
       "games": [
@@ -2605,6 +2605,26 @@
           "grade": "Mens Premier League"
         },
         {
+          "game_id": "2644300",
+          "home": "Essendon Hockey",
+          "away": "Footscray Hockey Club",
+          "score": "",
+          "date": "2026-09-12",
+          "time": "15:00",
+          "played": false,
+          "grade": "Mens Pennant D North West"
+        },
+        {
+          "game_id": "2644299",
+          "home": "Essendon Hockey",
+          "away": "Altona Hockey Club",
+          "score": "",
+          "date": "2026-09-12",
+          "time": "13:00",
+          "played": false,
+          "grade": "Mens Pennant E North West"
+        },
+        {
           "game_id": "2463991",
           "home": "Greensborough Hockey Club",
           "away": "Essendon Hockey",
@@ -2613,6 +2633,36 @@
           "time": "20:30",
           "played": true,
           "grade": "Womens Premier League"
+        },
+        {
+          "game_id": "2644286",
+          "home": "MCC Hockey Section",
+          "away": "Essendon Hockey",
+          "score": "",
+          "date": "2026-09-12",
+          "time": "14:30",
+          "played": false,
+          "grade": "Womens Pennant D North West"
+        },
+        {
+          "game_id": "2644284",
+          "home": "Essendon Hockey",
+          "away": "Greensborough Hockey Club",
+          "score": "",
+          "date": "2026-09-12",
+          "time": "10:30",
+          "played": false,
+          "grade": "Womens Pennant E North West"
+        },
+        {
+          "game_id": "2644285",
+          "home": "Essendon Hockey",
+          "away": "Brunswick Hockey Club",
+          "score": "",
+          "date": "2026-09-12",
+          "time": "12:30",
+          "played": false,
+          "grade": "Womens Metro 1 North West"
         }
       ],
       "date": "2026-06-04"
