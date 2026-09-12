@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-11T13:18",
-  "today": "2026-09-11",
+  "updated": "2026-09-12T12:43",
+  "today": "2026-09-12",
   "rounds": {
     "1": {
       "games": [
@@ -2608,20 +2608,20 @@
           "game_id": "2644300",
           "home": "Essendon Hockey",
           "away": "Footscray Hockey Club",
-          "score": "",
+          "score": "3-0",
           "date": "2026-09-12",
           "time": "15:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant D North West"
         },
         {
           "game_id": "2644299",
           "home": "Essendon Hockey",
           "away": "Altona Hockey Club",
-          "score": "",
+          "score": "1-4",
           "date": "2026-09-12",
           "time": "13:00",
-          "played": false,
+          "played": true,
           "grade": "Mens Pennant E North West"
         },
         {
