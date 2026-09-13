@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-12T12:43",
-  "today": "2026-09-12",
+  "updated": "2026-09-13T13:43",
+  "today": "2026-09-13",
   "rounds": {
     "1": {
       "games": [
@@ -2638,30 +2638,30 @@
           "game_id": "2644286",
           "home": "MCC Hockey Section",
           "away": "Essendon Hockey",
-          "score": "",
+          "score": "2-1",
           "date": "2026-09-12",
           "time": "14:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant D North West"
         },
         {
           "game_id": "2644284",
           "home": "Essendon Hockey",
           "away": "Greensborough Hockey Club",
-          "score": "",
+          "score": "4-3",
           "date": "2026-09-12",
           "time": "10:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Pennant E North West"
         },
         {
           "game_id": "2644285",
           "home": "Essendon Hockey",
           "away": "Brunswick Hockey Club",
-          "score": "",
+          "score": "1-0",
           "date": "2026-09-12",
           "time": "12:30",
-          "played": false,
+          "played": true,
           "grade": "Womens Metro 1 North West"
         }
       ],
